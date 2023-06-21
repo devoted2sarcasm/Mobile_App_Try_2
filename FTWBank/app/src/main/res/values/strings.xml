@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FTW Bank</string>
+    <string name="welcome">Welcome to FTW Bank</string>
+    <string name="disclaimer">This is not a real bank. You will not be dealing with real money.</string>
+    <string name="copyright">© Ken Page, 2023</string>
+    <string name="new_account">NEW ACCOUNT</string>
+    <string name="login">LOGIN</string>
+    <string name="deposit_button">+++</string>
+    <string name="withdraw_button">---</string>
+    <string name="deposit_field">Make a deposit:</string>
+    <string name="withdraw_field">Make a withdrawal:</string>
+    <string name="account_name">Account belonging to: </string>
+    <string name="account_num">Account#: </string>
+    <string name="current_bal">Current Balance: </string>
+    <string name="with_trans">WITHDRAW</string>
+    <string name="dep_trans">DEPOSIT</string>
+    <string name="thanks">THANK YOU FOR USING FTW</string>
+    <string name="acct_mgmt">Account Management Options:</string>
+    <string name="trans_hist">VIEW TRANSACTION HISTORY</string>
+    <string name="logout">SIGN OUT</string>
+</resources>
