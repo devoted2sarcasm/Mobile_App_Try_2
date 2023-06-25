@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/copyright"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+            android:id="@+id/text_fname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/fname"
+            android:gravity="right"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="75dp"/>
+
+    <EditText
+            android:id="@+id/edit_fname"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:hint="@string/hint_text"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/text_fname"
+            tools:layout_editor_absoluteY="75dp"/>
+
+    <TextView
+            android:id="@+id/text_lname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lname"
+            android:gravity="right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_fname"/>
+
+    <EditText
+        android:id="@+id/edit_lname"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/hint_text"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_lname"
+        app:layout_constraintTop_toBottomOf="@id/edit_fname" />
+
+    <TextView
+            android:id="@+id/text_email"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:gravity="right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_lname"/>
+
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/hint_text"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_email"
+        app:layout_constraintTop_toBottomOf="@id/edit_lname" />
+
+    <TextView
+            android:id="@+id/text_pass"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_email"/>
+
+    <EditText
+        android:id="@+id/edit_pass"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/hint_text"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_pass"
+        app:layout_constraintTop_toBottomOf="@id/edit_email" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
