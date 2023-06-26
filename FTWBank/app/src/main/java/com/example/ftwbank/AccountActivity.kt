@@ -93,7 +93,7 @@ class AccountActivity : AppCompatActivity() {
                 val accountNumber = retrieveAccountNumber(email)
 
                 // Valid deposit amount entered, perform deposit action
-                performDeposit(accountNumber, amount)
+                performDeposit(email, amount)
             } else {
                 Toast.makeText(this, "Please enter a valid deposit amount.", Toast.LENGTH_SHORT).show()
             }
@@ -127,35 +127,36 @@ class AccountActivity : AppCompatActivity() {
         return accountNumber
     }
 
-    private fun performDeposit(accountNumber: Int, amount: Double) {
-        val email = intent.getStringExtra("email") ?: ""
+    private fun performDeposit(email: String, amount: Double) {
+        //val email = intent.getStringExtra("email") ?: ""
 
         // Get the current timestamp
         val timestamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
         // Retrieve the current balance
-        val currentBalance = retrieveCurrentBalance(accountNumber)
+        val currentBalance = retrieveCurrentBalance(email)
 
+        val newBalance = currentBalance + amount
         // Create a new Transaction object
-        val transaction = Transaction(TransactionType.DP, amount, timestamp, currentBalance)
+        val transaction = Transaction(TransactionType.DP, amount, timestamp, newBalance)
 
         // Store the transaction in the database
         val db = databaseHelper.writableDatabase
-        val tableName = "${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$accountNumber"
+        val tableName = "${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$email"
 
         val values = ContentValues().apply {
             put(DatabaseHelper.COLUMN_TRANSACTION_TYPE, transaction.transactionType.toString())
             put(DatabaseHelper.COLUMN_TRANSACTION_AMOUNT, transaction.transactionAmount)
             put(DatabaseHelper.COLUMN_TIMESTAMP, transaction.timestamp)
-            put(DatabaseHelper.COLUMN_BALANCE, transaction.balance)
+            put(DatabaseHelper.COLUMN_BALANCE, newBalance)
         }
 
         db.insert(tableName, null, values)
         db.close()
 
         // You can also update the account balance based on the deposit amount
-        updateAccountBalance(amount)
-
+        //updateAccountBalance(amount)
+        retrieveAccountInfo(email)
         // Display a success message or perform any other necessary actions
         Toast.makeText(this, "Deposit made successfully.", Toast.LENGTH_SHORT).show()
     }
@@ -167,6 +168,8 @@ class AccountActivity : AppCompatActivity() {
         val currentTime = Calendar.getInstance().time
         return dateFormat.format(currentTime)
     }
+
+
     @SuppressLint("Range")
     private fun retrieveTransactionHistory() {
 
@@ -220,7 +223,7 @@ class AccountActivity : AppCompatActivity() {
         if(cursor.moveToFirst()) {
             val accountName = "${cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FNAME))} ${cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LNAME))}"
             val accountNumber = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_ACCOUNT_NUMBER))
-            val currentBalance = retrieveCurrentBalance(accountNumber)
+            val currentBalance = retrieveCurrentBalance(email)
 
             accountNameTextView?.text = accountName
             accountNumberTextView?.text = accountNumber.toString()
@@ -233,7 +236,7 @@ class AccountActivity : AppCompatActivity() {
     }
 
     @SuppressLint("Range")
-    private fun retrieveCurrentBalance(accountNumber: Int): Double {
+    private fun retrieveCurrentBalance(email: String): Double {
         val db = databaseHelper.readableDatabase
 
         val query = "SELECT ${DatabaseHelper.COLUMN_BALANCE} FROM ${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$email ORDER BY ${DatabaseHelper.COLUMN_TIMESTAMP} DESC LIMIT 1"
@@ -253,8 +256,8 @@ class AccountActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("Range")
-    private fun updateAccountBalance(depositAmount: Double) {
+    //@SuppressLint("Range")
+    /*private fun updateAccountBalance(depositAmount: Double) {
         val email = intent.getStringExtra("email") ?: ""
 
         val db = databaseHelper.writableDatabase
@@ -294,41 +297,39 @@ class AccountActivity : AppCompatActivity() {
         }
 
         db.close()
-    }
+    }*/
 
-    private fun performWithdrawal(accountNumber: Int, amount: Double) {
-        val email = intent.getStringExtra("email") ?: ""
+    private fun performWithdrawal(email: String, amount: Double) {
+        //val email = intent.getStringExtra("email") ?: ""
 
         // Get the current timestamp
         val timestamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
         // Retrieve the current balance
-        val currentBalance = retrieveCurrentBalance(accountNumber)
+        val currentBalance = retrieveCurrentBalance(email)
 
-        if(currentBalance < amount) {
-            Toast.makeText(this, "Insufficient funds.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
+        val newBalance = currentBalance - amount
         // Create a new Transaction object
-        val transaction = Transaction(TransactionType.WD, amount, timestamp, currentBalance)
+        val transaction = Transaction(TransactionType.WD, amount, timestamp, newBalance)
 
         // Store the transaction in the database
         val db = databaseHelper.writableDatabase
-        val tableName = "${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$accountNumber"
+        val tableName = "${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$email"
 
         val values = ContentValues().apply {
             put(DatabaseHelper.COLUMN_TRANSACTION_TYPE, transaction.transactionType.toString())
             put(DatabaseHelper.COLUMN_TRANSACTION_AMOUNT, transaction.transactionAmount)
             put(DatabaseHelper.COLUMN_TIMESTAMP, transaction.timestamp)
-            put(DatabaseHelper.COLUMN_BALANCE, transaction.balance)
+            put(DatabaseHelper.COLUMN_BALANCE, newBalance)
         }
 
         db.insert(tableName, null, values)
         db.close()
 
+        retrieveAccountInfo(email)
+
         // You can also update the account balance based on the deposit amount
-        updateAccountBalance(amount)
+        //updateAccountBalance(amount)
 
         // Display a success message or perform any other necessary actions
         Toast.makeText(this, "Withdrawal made successfully.", Toast.LENGTH_SHORT).show()
@@ -338,20 +339,26 @@ class AccountActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Make a Withdrawal")
 
-        val inputView = LayoutInflater.from(this).inflate(R.layout.dialog_make_withdrawal, null)
+        val inputView = LayoutInflater.from(this).inflate(R.layout.dialog_make_deposit, null)
         builder.setView(inputView)
+
+        val currentBalance = retrieveCurrentBalance(email)
+        Toast.makeText(this, "Current Balance: $currentBalance", Toast.LENGTH_LONG).show()
 
         builder.setPositiveButton("Make Withdrawal") { dialog, _ ->
             val amountEditText = inputView.findViewById<EditText>(R.id.editWithdrawAmount)
-            val amount = amountEditText.text.toString().toDoubleOrNull()
+            val amountText = amountEditText?.text?.toString()
+            val amount: Double = amountText?.toDoubleOrNull() ?: 0.0
 
-            if (amount != null && amount > 0) {
+
+
+            if (amount <= currentBalance) {
                 // Retrieve the account number
-                val email = intent.getStringExtra("email") ?: ""
-                val accountNumber = retrieveAccountNumber(email)
+                val withdrawalEmail = intent.getStringExtra("email") ?: ""
 
                 // Valid deposit amount entered, perform deposit action
-                performWithdrawal(accountNumber, amount)
+                performWithdrawal(withdrawalEmail, amount)
+                retrieveAccountInfo(email)
             } else {
                 Toast.makeText(this, "Please enter a valid withdrawal amount.", Toast.LENGTH_SHORT).show()
             }
