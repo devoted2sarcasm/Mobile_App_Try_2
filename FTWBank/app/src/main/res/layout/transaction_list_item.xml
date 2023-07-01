@@ -5,28 +5,28 @@
               android:orientation="vertical">
 
     <TextView
-            android:id="@+id/textTransactionType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/transaction_type"
-            android:textStyle="bold" />
+        android:id="@+id/textTransactionType"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="@string/transaction_type"
+        android:textStyle="bold" />
 
     <TextView
-            android:id="@+id/textTransactionAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/transaction_amount" />
+        android:id="@+id/textTransactionAmount"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="@string/transaction_amount" />
 
     <TextView
-            android:id="@+id/textTimestamp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/timestamp" />
+        android:id="@+id/textTimestamp"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="@string/timestamp" />
 
     <TextView
-            android:id="@+id/textNewBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/new_balance" />
+        android:id="@+id/textNewBalance"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="@string/new_balance" />
 
 </LinearLayout>

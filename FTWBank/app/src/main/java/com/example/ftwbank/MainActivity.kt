@@ -69,7 +69,7 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         // Handle database upgrades if needed
     }
 
-    fun insertAccount(fname: String, lname: String, email: String, password: String) {
+    private fun insertAccount(fname: String, lname: String, email: String, password: String) {
         val values = ContentValues().apply {
             put(COLUMN_FNAME, fname)
             put(COLUMN_LNAME, lname)
@@ -77,7 +77,7 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
             put(COLUMN_PASS, password)
         }
         val db = writableDatabase
-        val accountNumber = db.insertOrThrow(TABLE_NAME, null, values)
+        db.insertOrThrow(TABLE_NAME, null, values)
 
         // Create transactions table
         val createTransactionsTableQuery = "CREATE TABLE IF NOT EXISTS " +
@@ -103,7 +103,7 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
     }
 
 
-    fun launchAccountActivity(email: String) {
+    private fun launchAccountActivity(email: String) {
         val intent = Intent(context, AccountActivity::class.java)
         intent.putExtra("email", email)
         context.startActivity(intent)
@@ -113,7 +113,7 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
         accountCreationDialog()
     }
 
-    fun validateCredentials(email: String, password: String): Boolean {
+    private fun validateCredentials(email: String, password: String): Boolean {
         val db = readableDatabase
         val selection = "$COLUMN_EMAIL = ? AND $COLUMN_PASS = ?"
         val selectionArgs = arrayOf(email, password)
@@ -138,13 +138,13 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
 
 
 
-    fun accountLoginDialog(callback: (String, String) -> Unit) {
+    private fun accountLoginDialog(callback: (String, String) -> Unit) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.account_login_dialog, null)
 
         val dialogBuilder = AlertDialog.Builder(context)
             .setView(dialogView)
             .setTitle("Login to Your Account")
-            .setPositiveButton("Login") { dialog, which ->
+            .setPositiveButton("Login") { dialog, _ ->
                 val loginEmailEntered = dialogView.findViewById<EditText>(R.id.edit_email_login)
                 val loginPassEntered = dialogView.findViewById<EditText>(R.id.edit_pass_login)
 
@@ -154,7 +154,7 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
                 dialog.dismiss()
                 callback(email, password)
             }
-            .setNegativeButton("Cancel") { dialog, which ->
+            .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }
 
@@ -163,13 +163,13 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
     }
 
 
-    fun accountCreationDialog() {
+    private fun accountCreationDialog() {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_account_creation, null)
 
         val dialogBuilder = AlertDialog.Builder(context)
             .setView(dialogView)
             .setTitle("Create New Account")
-            .setPositiveButton("Create") { dialog, which ->
+            .setPositiveButton("Create") { dialog, _ ->
                 val firstName = dialogView.findViewById<EditText>(R.id.edit_fname).text.toString()
                 val lastName = dialogView.findViewById<EditText>(R.id.edit_lname).text.toString()
                 val enterEmail = dialogView.findViewById<EditText>(R.id.edit_email).text.toString()
@@ -181,7 +181,7 @@ class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, D
 
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, which ->
+            .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }
 

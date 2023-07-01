@@ -10,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 class AccountActivity : AppCompatActivity() {
@@ -61,7 +63,7 @@ class AccountActivity : AppCompatActivity() {
             }
 
             transactionHistoryButton.setOnClickListener {
-                retrieveTransactionHistory()
+                transactionHistoryDialog(email)
             }
 
             logoutButton.setOnClickListener {
@@ -170,6 +172,56 @@ class AccountActivity : AppCompatActivity() {
     }
 
 
+
+    @SuppressLint("Range")
+    private fun fetchTransactionHistory(email: String): List<Transaction> {
+        val transactions = mutableListOf<Transaction>()
+
+        val databaseHelper = DatabaseHelper(this)
+        val db = databaseHelper.readableDatabase
+
+        val query = "SELECT * FROM ${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$email ORDER BY ${DatabaseHelper.COLUMN_TRANSACTION_ID} DESC LIMIT 10"
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            while(!cursor.isAfterLast) {
+                val t_type = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_TRANSACTION_TYPE))
+                val t_amount = cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.COLUMN_TRANSACTION_AMOUNT))
+                val balance = cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.COLUMN_BALANCE))
+                val timestamp = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_TIMESTAMP))
+
+                val transaction = Transaction(
+                    TransactionType.valueOf(t_type),
+                    t_amount,
+                    timestamp,
+                    balance
+                )
+                transactions.add(transaction)
+                cursor.moveToNext()
+            }
+        }
+        return transactions
+    }
+
+    private fun transactionHistoryDialog(email: String) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.transaction_recycler, null)
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setTitle("Recent Transactions")
+
+        val transactions = fetchTransactionHistory(email)
+
+        val recyclerView = dialogView.findViewById<RecyclerView>(R.id.transactionRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val adapter = TransactionAdapter(transactions)
+        recyclerView.adapter = adapter
+
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+
+
     @SuppressLint("Range")
     private fun retrieveTransactionHistory() {
 
@@ -239,7 +291,7 @@ class AccountActivity : AppCompatActivity() {
     private fun retrieveCurrentBalance(email: String): Double {
         val db = databaseHelper.readableDatabase
 
-        val query = "SELECT ${DatabaseHelper.COLUMN_BALANCE} FROM ${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$email ORDER BY ${DatabaseHelper.COLUMN_TIMESTAMP} DESC LIMIT 1"
+        val query = "SELECT ${DatabaseHelper.COLUMN_BALANCE} FROM ${DatabaseHelper.TRANSACTION_TABLE_PREFIX}$email ORDER BY ${DatabaseHelper.COLUMN_TRANSACTION_ID} DESC LIMIT 1"
 
         val cursor = db.rawQuery(query, null)
 
@@ -332,14 +384,15 @@ class AccountActivity : AppCompatActivity() {
         //updateAccountBalance(amount)
 
         // Display a success message or perform any other necessary actions
-        Toast.makeText(this, "Withdrawal made successfully.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Withdrawal of \$$amount made successfully.", Toast.LENGTH_SHORT).show()
     }
 
+    @SuppressLint("MissingInflatedId")
     private fun makeWithdrawal() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Make a Withdrawal")
 
-        val inputView = LayoutInflater.from(this).inflate(R.layout.dialog_make_deposit, null)
+        val inputView = LayoutInflater.from(this).inflate(R.layout.dialog_make_withdrawal, null)
         builder.setView(inputView)
 
         val currentBalance = retrieveCurrentBalance(email)
@@ -347,21 +400,32 @@ class AccountActivity : AppCompatActivity() {
 
         builder.setPositiveButton("Make Withdrawal") { dialog, _ ->
             val amountEditText = inputView.findViewById<EditText>(R.id.editWithdrawAmount)
-            val amountText = amountEditText?.text?.toString()
-            val amount: Double = amountText?.toDoubleOrNull() ?: 0.0
+            //Toast.makeText(this, "Text entered: $amountEditText", Toast.LENGTH_SHORT).show()
+            var amount: Double? = null
+            var isValidAmount = false
 
+            while (!isValidAmount) {
+                val amountText = amountEditText?.text?.toString()
+                //Toast.makeText(this, "amountText = $amountText", Toast.LENGTH_SHORT).show()
+                amount = amountText?.toDoubleOrNull()
 
+                //Toast.makeText(this, "amount = $amount", Toast.LENGTH_SHORT).show()
 
-            if (amount <= currentBalance) {
-                // Retrieve the account number
-                val withdrawalEmail = intent.getStringExtra("email") ?: ""
-
-                // Valid deposit amount entered, perform deposit action
-                performWithdrawal(withdrawalEmail, amount)
-                retrieveAccountInfo(email)
-            } else {
-                Toast.makeText(this, "Please enter a valid withdrawal amount.", Toast.LENGTH_SHORT).show()
+                if (amount != null && amount > 0) {
+                    isValidAmount = true
+                } else {
+                    Toast.makeText(this, "Please enter a valid withdrawal amount.", Toast.LENGTH_SHORT).show()
+                    // Clear the EditText to allow the user to enter a valid amount
+                    amountEditText?.text?.clear()
+                }
             }
+
+            // Retrieve the account number
+            val withdrawalEmail = intent.getStringExtra("email") ?: ""
+
+            // Valid withdrawal amount entered, perform withdrawal action
+            performWithdrawal(withdrawalEmail, amount!!)
+            retrieveAccountInfo(email)
 
             dialog.dismiss()
         }

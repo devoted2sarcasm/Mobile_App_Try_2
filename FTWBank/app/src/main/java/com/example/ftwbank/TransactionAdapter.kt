@@ -1,35 +1,39 @@
 package com.example.ftwbank
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
-class TransactionAdapter(
-    context: Context,
-    private val transactions: List<Transaction>
-) : ArrayAdapter<Transaction>(context, 0, transactions) {
+class TransactionAdapter(private val transactions: List<Transaction>) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var itemView = convertView
-        val transaction = getItem(position)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.transaction, parent, false)
+        return TransactionViewHolder(itemView)
+    }
 
-        if (itemView == null) {
-            itemView = LayoutInflater.from(context).inflate(R.layout.transaction_list_item, parent, false)
+    override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
+        val transaction = transactions[position]
+        holder.bind(transaction)
+    }
+
+    override fun getItemCount(): Int {
+        return transactions.size
+    }
+
+    inner class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val transactionTypeTextView: TextView = itemView.findViewById(R.id.transactionType)
+        private val transactionAmountTextView: TextView = itemView.findViewById(R.id.transactionAmount)
+        private val transactionTimestampTextView: TextView = itemView.findViewById(R.id.transactionTimestamp)
+        private val transactionBalanceTextView: TextView = itemView.findViewById(R.id.transactionBalance)
+
+        fun bind(transaction: Transaction) {
+            transactionTypeTextView.text = transaction.transactionType.toString()
+            transactionAmountTextView.text = transaction.transactionAmount.toString()
+            transactionTimestampTextView.text = transaction.timestamp
+            transactionBalanceTextView.text = transaction.balance.toString()
         }
-
-        val textTransactionType = itemView?.findViewById<TextView>(R.id.textTransactionType)
-        val textTransactionAmount = itemView?.findViewById<TextView>(R.id.textTransactionAmount)
-        val textTimestamp = itemView?.findViewById<TextView>(R.id.textTimestamp)
-        val textNewBalance = itemView?.findViewById<TextView>(R.id.textNewBalance)
-
-        textTransactionType?.text = transaction?.transactionType?.toString()
-        textTransactionAmount?.text = transaction?.transactionAmount.toString()
-        textTimestamp?.text = transaction?.timestamp
-        textNewBalance?.text = transaction?.balance.toString()
-
-        return itemView!!
     }
 }

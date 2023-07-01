@@ -20,7 +20,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:padding="16dp"
-            tools:listitem="@layout/transaction_list_item" />
+            tools:listitem="@layout/transaction" />
 
     <Button
             android:id="@+id/backButton"
