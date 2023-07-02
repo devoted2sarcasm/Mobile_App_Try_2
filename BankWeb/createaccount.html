@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
+    <meta name="author" content="Ken Page">
+    <meta name="description" content="FTW BANK">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src=""></script>
+</head>
+
+<body>
+    <div class="container">
+    <img class ="bank-logo" src=".\images\bank2.png" alt="Bank Logo">
+    <form action="" class="account_creation">
+        <fieldset>
+            <legend>Please complete all fields:</legend>
+            <p>
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname" id="firstname" placeholder="First Name" required autofocus>
+            </p>
+            <p>
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
+            </p>
+            <p>
+                <label for="email">Email address:</label>
+                <input type="email" name="email" id="email" placeholder="@xyz.com" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{3}" required>
+            </p>
+            <p>
+                <label for="password">Make a password:</label>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </p>
+            <p>
+                <label for="password2">Confirm password:</label>
+                <input type="password" name="password2" id="password2" placeholder="Confirm password" required>
+            </p>
+        </fieldset>
+    </form>    
+    <table class="button-container">
+        <tr> 
+            <td></td>
+            <td>
+                <a href="#" id="create" class="button">Create Account</a>
+            </td>
+            <td>
+                <a href="index.html" id="cancel" class="button">Cancel</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+
+<footer>
+    <p>
+        <small>
+            Copyright &copy; Ken Page - CIS230
+        </small>
+    </p>
+</footer>
+
+</html>

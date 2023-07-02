@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Display</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
+    <meta name="author" content="Ken Page">
+    <meta name="description" content="FTW BANK">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        function logout() {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <img class="bank-logo" src=".\images\bank2.png" alt="Bank Logo">
+        <h1>Account Details</h1>
+        <table class="account-details">
+            <tr>
+                <td>Name on Account:</td>
+                <td id="name-placeholder"></td>
+            </tr>
+            <tr>
+                <td>Account Number:</td>
+                <td id="account-number-placeholder"></td>
+            </tr>
+            <tr>
+                <td>Current Balance:</td>
+                <td id="balance-placeholder"></td>
+            </tr>
+        </table>
+        <h2>Actions</h2>
+        <form action="" class="account-action">
+            <p class="input-amount-container">
+                <label for="input-amount">Input Amount:</label>
+                <input type="text" name="input-amount" id="input-amount" placeholder="Amount" required>
+            </p>
+            <div class="button-container">
+                <button type="button" id="account-history" class="button">Account History</button>
+                <button type="button" id="deposit" class="button">Deposit</button>
+                <button type="button" id="withdraw" class="button">Withdraw</button>
+                <button type="button" id="logout" class="button" onclick="logout()">Logout</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>
+            <small>
+                &copy; Ken Page - CIS230
+            </small>
+        </p>
+    </footer>
+</body>
+</html>

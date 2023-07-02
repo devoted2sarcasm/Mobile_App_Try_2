@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ken Page">
+  <meta name="description" content="FTW BANK">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
+    <title>FTW Bank</title>
+    <script>
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", function() {
+            navigator.serviceWorker.register("service-worker.js").then(
+              function(registration) {
+                console.log("Service Worker registration successful with scope: ", registration.scope);
+              },
+              function(error) {
+                console.log("Service Worker registration failed: ", error);
+              }
+            );
+          });
+        }
+      </script>
+      
+</head>
+
+<body>
+  <div class="container">
+    <img class="bank-logo" src=".\images\bank2.png" alt="Bank Logo">
+    <h1 class="bank-title">Welcome</h1>
+    <p class="disclaimer">This is not a real bank. You will not be doing anything with real money.</p>
+    <form action="">
+        <fieldset>
+            <legend>Enter username/password for login:</legend>
+            <p>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Username" required autofocus>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </p>
+        </fieldset>
+    </form>
+    <table>
+        <tr>
+            <td>
+                <a href="#" id="login" class="button" onclick="login()">Login</a>
+            </td>
+            <td>
+                <a href="createaccount.html" id="new_account" class="button">New Account</a>
+            </td>
+        </tr>
+    </table>
+
+  </div>
+</body>
+
+<footer>
+    <p>
+        <small>
+            Copyright &copy; Ken Page - CIS230
+        </small>
+    </p>
+</footer>
+
+</html>

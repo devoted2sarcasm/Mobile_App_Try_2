@@ -1,0 +1,21 @@
+{
+    "name": "FTW Bank",
+    "short_name": "FTW Bank",
+    "icons": [
+      {
+        "src": "images/bank-icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "images/bank-icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#039BE5",
+    "background_color": "#FFFFFF"
+  }
+  
