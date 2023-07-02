@@ -9,21 +9,9 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
     <title>FTW Bank</title>
-    <script>
-        if ("serviceWorker" in navigator) {
-          window.addEventListener("load", function() {
-            navigator.serviceWorker.register("service-worker.js").then(
-              function(registration) {
-                console.log("Service Worker registration successful with scope: ", registration.scope);
-              },
-              function(error) {
-                console.log("Service Worker registration failed: ", error);
-              }
-            );
-          });
-        }
-      </script>
-      
+    <script src="sql-wasm.js"></script>
+
+          
 </head>
 
 <body>
@@ -31,6 +19,7 @@
     <img class="bank-logo" src=".\images\bank2.png" alt="Bank Logo">
     <h1 class="bank-title">Welcome</h1>
     <p class="disclaimer">This is not a real bank. You will not be doing anything with real money.</p>
+    <p id="message" class="error"></p>
     <form action="">
         <fieldset>
             <legend>Enter username/password for login:</legend>
@@ -56,6 +45,10 @@
     </table>
 
   </div>
+
+<script src="service-worker.js"></script>
+<script src="script2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </body>
 
 <footer>

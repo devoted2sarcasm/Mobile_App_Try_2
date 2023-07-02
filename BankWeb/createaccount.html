@@ -8,12 +8,14 @@
     <meta name="author" content="Ken Page">
     <meta name="description" content="FTW BANK">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src=""></script>
+    <script src="sql-wasm.js"></script>
+
 </head>
 
 <body>
     <div class="container">
     <img class ="bank-logo" src=".\images\bank2.png" alt="Bank Logo">
+    <p id="message" class="error"></p>
     <form action="" class="account_creation">
         <fieldset>
             <legend>Please complete all fields:</legend>
@@ -43,7 +45,7 @@
         <tr> 
             <td></td>
             <td>
-                <a href="#" id="create" class="button">Create Account</a>
+                <button id="create" class="button" onclick="createAccount()">Create Account</button>
             </td>
             <td>
                 <a href="index.html" id="cancel" class="button">Cancel</a>
@@ -51,6 +53,10 @@
         </tr>
     </table>
 </div>
+
+<script src="service-worker.js"></script>
+<script src="script2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </body>
 
 <footer>
@@ -62,3 +68,4 @@
 </footer>
 
 </html>
+
