@@ -8,7 +8,8 @@
     <meta name="author" content="Ken Page">
     <meta name="description" content="FTW BANK">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="sql-wasm.js"></script>
+    <script src="service-worker.js"></script>
+    <script src="scriptcreate.js"></script>
 
 </head>
 
@@ -29,7 +30,7 @@
             </p>
             <p>
                 <label for="email">Email address:</label>
-                <input type="email" name="email" id="email" placeholder="@xyz.com" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{3}" required>
+                <input type="email" name="email" id="email" placeholder="@xyz.com" required>
             </p>
             <p>
                 <label for="password">Make a password:</label>
@@ -45,7 +46,7 @@
         <tr> 
             <td></td>
             <td>
-                <button id="create" class="button" onclick="createAccount()">Create Account</button>
+                <button id="create" class="button">Create Account</button>
             </td>
             <td>
                 <a href="index.html" id="cancel" class="button">Cancel</a>
@@ -54,9 +55,6 @@
     </table>
 </div>
 
-<script src="service-worker.js"></script>
-<script src="script2.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </body>
 
 <footer>

@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
     <title>FTW Bank</title>
-    <script src="sql-wasm.js"></script>
-
+    <script src="service-worker.js"></script>
+    <script src="scriptindex.js"></script>
           
 </head>
 
@@ -24,31 +24,27 @@
         <fieldset>
             <legend>Enter username/password for login:</legend>
             <p>
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" placeholder="Username" required autofocus>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="email@xyz.com" required autofocus>
             </p>
             <p>
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="password" name="password" id="password" placeholder="Password" required autocomplete="current-password">
             </p>
         </fieldset>
+        <table>
+            <tr>
+                <td>
+                    <button id="login" class="button">Login</button>
+                </td>
+                <td>
+                    <a href="createaccount.html" id="new_account" class="button">New Account</a>
+                </td>
+            </tr>
+        </table>
     </form>
-    <table>
-        <tr>
-            <td>
-                <a href="#" id="login" class="button" onclick="login()">Login</a>
-            </td>
-            <td>
-                <a href="createaccount.html" id="new_account" class="button">New Account</a>
-            </td>
-        </tr>
-    </table>
-
   </div>
 
-<script src="service-worker.js"></script>
-<script src="script2.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </body>
 
 <footer>
