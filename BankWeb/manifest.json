@@ -1,8 +1,8 @@
 {
     "name": "FTW Bank",
     "short_name": "FTW Bank",
-    "start_url": "/",
-    "display": "standalone",
+    "start_url": "../index.html",
+    "display": "browser",
     "background_color": "#ffffff",
     "theme_color": "#3367d6",
     "icons": [
