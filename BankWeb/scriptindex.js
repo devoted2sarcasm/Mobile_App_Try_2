@@ -1,62 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  const DATABASE_NAME = 'BankingAppDatabase.db';
-  const TABLE_NAME = 'FTWaccounts';
-  const COLUMN_ACCOUNT_NUMBER = 'account_number';
-  const COLUMN_FNAME = 'first_name';
-  const COLUMN_LNAME = 'last_name';
-  const COLUMN_EMAIL = 'email';
-  const COLUMN_PASS = 'pass';
-  const TRANSACTION_TABLE_PREFIX = 'Transactions_';
-  const COLUMN_TRANSACTION_ID = 'transaction_id';
-  const COLUMN_TRANSACTION_TYPE = 'transaction_type';
-  const COLUMN_BALANCE = 'balance';
-  const COLUMN_TIMESTAMP = 'timestamp';
-  const COLUMN_TRANSACTION_AMOUNT = 'amount';
-  
-  const OPEN_OR_CREATE = `CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (
-    ${COLUMN_ACCOUNT_NUMBER} INTEGER PRIMARY KEY AUTOINCREMENT,
-    ${COLUMN_FNAME} TEXT NOT NULL,
-    ${COLUMN_LNAME} TEXT NOT NULL,
-    ${COLUMN_EMAIL} TEXT UNIQUE NOT NULL,
-    ${COLUMN_PASS} TEXT NOT NULL
-  )`;
-  
+    const DATABASE_NAME = 'FTWDatabase.db';
+    const TABLE_NAME = 'User_Accounts';
+    const COLUMN_ACCOUNT_NUMBER = 'account_number';
+    const COLUMN_FNAME = 'first_name';
+    const COLUMN_LNAME = 'last_name';
+    const COLUMN_EMAIL = 'email';
+    const COLUMN_PASS = 'pass';
+    const TRANSACTION_TABLE_NAME = 'User_Transactions';
+    const COLUMN_TRANSACTION_ID = 'transaction_id';
+    const COLUMN_TRANSACTION_TYPE = 'transaction_type';
+    const COLUMN_BALANCE = 'balance';
+    const COLUMN_TIMESTAMP = 'timestamp';
+    const COLUMN_TRANSACTION_AMOUNT = 'amount';
+    const TRANSACTION_TYPE_DEP = 'Deposit';
+    const TRANSACTION_TYPE_WD = 'Withdrawal';
+
+    const messageElement = document.getElementById('message');
+
+    let db;
+
   // Check if IndexedDB is supported by the browser
   if ('indexedDB' in window) {
-      // Open or create a database
-      const request = window.indexedDB.open(DATABASE_NAME, 2);
-      let db;
-    
-      // Handle database upgrade, success, and error events
-      request.onupgradeneeded = function(event) {
+    const request = window.indexedDB.open(DATABASE_NAME, 5);
+
+    request.onupgradeneeded = function(event) {
         db = event.target.result;
-    
-        // Create the object store if it doesn't exist
-        if (!db.objectStoreNames.contains(TABLE_NAME)) {
-          const objectStore = db.createObjectStore(TABLE_NAME, { keyPath: COLUMN_ACCOUNT_NUMBER, autoIncrement: true });
-          objectStore.createIndex(COLUMN_EMAIL, COLUMN_EMAIL, { unique: true });
+
+        if(!db.objectStoreNames.contains(TABLE_NAME)) {
+            const objectStore = db.createObjectStore(TABLE_NAME, { keyPath: COLUMN_ACCOUNT_NUMBER, autoIncrement: true });
+            objectStore.createIndex('emailIndex', COLUMN_EMAIL, { unique: true });
+            objectStore.createIndex('passIndex', COLUMN_PASS, { unique: false });
+            objectStore.createIndex('fnameIndex', COLUMN_FNAME, { unique: false });
+            objectStore.createIndex('lnameIndex', COLUMN_LNAME, { unique: false });                
         }
-      };
-    
-      request.onsuccess = function(event) {
+
+        if (!db.objectStoreNames.contains(TRANSACTION_TABLE_NAME)) {
+            const transactionStore = db.createObjectStore(TRANSACTION_TABLE_NAME, { keyPath: COLUMN_TRANSACTION_ID, autoIncrement: true });
+            transactionStore.createIndex(COLUMN_ACCOUNT_NUMBER, COLUMN_ACCOUNT_NUMBER, { unique: false });
+            transactionStore.createIndex(COLUMN_TRANSACTION_TYPE, COLUMN_TRANSACTION_TYPE, { unique: false });
+            transactionStore.createIndex(COLUMN_TRANSACTION_AMOUNT, COLUMN_TRANSACTION_AMOUNT, { unique: false });
+            transactionStore.createIndex(COLUMN_BALANCE, COLUMN_BALANCE, { unique: false });
+            transactionStore.createIndex(COLUMN_TIMESTAMP, COLUMN_TIMESTAMP, { unique: false });
+        }
+
+        console.log('Database upgraded successfully!');
+    };
+
+    request.onerror = function(event) {
+        console.error('Database error:', event.target.error);           
+    };
+
+    request.onsuccess = function(event) {
         db = event.target.result;
         console.log('Database opened successfully!');
-        //console.log(document.getElementById('create'));
-        
-        document.getElementById('login').addEventListener('click', function(event) {
-          event.preventDefault();
-          validateCredentials(db);
-        });
-        
-      };
-    
-      request.onerror = function(event) {
-        console.error('Database error:', event.target.error);
-      };
-    } else {
-      console.error('IndexedDB is not supported by this browser.');
-    }
+        document.getElementById('create').onclick = function() {
+            createAccount();
+        };
+    };
+} else {
+    console.error('IndexedDB is not supported.');
+}
   
   const messageElement = document.getElementById('message');
   

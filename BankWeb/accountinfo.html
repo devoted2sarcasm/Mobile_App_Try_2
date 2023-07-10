@@ -9,7 +9,7 @@
     <meta name="description" content="FTW BANK">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="service-worker.js"></script>
-    <script src="scriptaccount.js"></script>
+    <script src="script-account-mk3.js"></script>
 </head>
 
 <body>
@@ -18,16 +18,16 @@
         <h1>Account Details</h1>
         <table class="account-details">
             <tr>
-                <td>Name on Account:</td>
-                <td id="name-placeholder"></td>
+                <td class="account-details">Name on Account:</td>
+                <td class="account-details" id="name-placeholder"></td>
             </tr>
             <tr>
-                <td>Account Number:</td>
-                <td id="account-number-placeholder"></td>
+                <td class="account-details">Account Number:</td>
+                <td id="account-number-placeholder" class="account-details"></td>
             </tr>
             <tr>
-                <td>Current Balance:</td>
-                <td id="balance-placeholder"></td>
+                <td class="account-details">Current Balance:</td>
+                <td class="account-details" id="balance-placeholder"></td>
             </tr>
         </table>
         <h2>Actions</h2>
@@ -41,7 +41,7 @@
                 <button type="button" id="account-history" class="button">Account History</button>
                 <button type="button" id="deposit" class="button">Deposit</button>
                 <button type="button" id="withdraw" class="button">Withdraw</button>
-                <button type="button" id="logout" class="button" onclick="logout()">Logout</button>
+                <button type="button" id="logout" class="button">Logout</button>
             </div>
         </form>
     </div>

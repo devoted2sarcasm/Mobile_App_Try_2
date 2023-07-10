@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ken Page">
+  <meta name="description" content="FTW BANK">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
+    <title>FTW Bank</title>
+    <script src="service-worker.js"></script>
+    <script src="scriptindex.js"></script>
+          
+</head>
+
+<body>
+  <div class="container">
+    <img class="bank-logo" src=".\images\bank2.png" alt="Bank Logo">
+    <h1 class="bank-title">Welcome</h1>
+    <p class="disclaimer">This is not a real bank. You will not be doing anything with real money.</p>
+    <p id="message" class="error"></p>
+    <form action="">
+        <fieldset>
+            <legend>Enter username/password for login:</legend>
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="email@xyz.com" required autofocus>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Password" required autocomplete="current-password">
+            </p>
+        </fieldset>
+        <table>
+            <tr>
+                <td>
+                    <button id="login" class="button">Login</button>
+                </td>
+                <td>
+                    <a href="createaccount.html" id="new_account" class="button">New Account</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+  </div>
+
+</body>
+
+<footer>
+    <p>
+        <small>
+            Copyright &copy; Ken Page - CIS230
+        </small>
+    </p>
+</footer>
+
+</html>

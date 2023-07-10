@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Display</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
+    <meta name="author" content="Ken Page">
+    <meta name="description" content="FTW BANK">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="service-worker.js"></script>
+    <script src="script-history.js"></script>
+
+    <style>
+        html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        }
+
+        .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 48px;
+        height: 100%;
+        }
+
+        .bank-logo {
+        margin-bottom: 20px;
+        }
+
+        #transactionTable {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 800px;
+        color: black;
+        }
+
+        #transactionTable th,
+        #transactionTable td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        }
+
+        #transactionTable th {
+        background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img class="bank-logo" src=".\images\bank2.png" alt="Bank Logo">
+        <h1>Transaction History for:</h1>
+        <h2 id="username"></h2>
+        <p id="message" class="error"></p>
+        <table id="transactionTable">
+            <thead>
+              <tr>
+                <th>Transaction Type</th>
+                <th>Amount</th>
+                <th>Balance</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="transactionTableBody">
+              <!-- Transaction rows will be added dynamically here -->
+            </tbody>
+          </table>
+        </div>
+        <button id="back" class="button" onclick="history.back()">Go Back</button>
+</body>
+
+<footer>
+    <p>
+        <small>
+            &copy; Ken Page - CIS230
+        </small>
+    </p>
+</footer>
+
+
+</html>

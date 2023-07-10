@@ -8,13 +8,17 @@ self.addEventListener("install", function(event) {
           "images/bank-icon.png",
           "accountinfo.html",
           "createaccount.html",
-          "script.js",
+          "accounthistory.html",
+          "script-history.js",
+          "script-create-mk4.js",
+          "script-account-mk3.js",
+          "script-index-mk3.js",
           "manifest.json",
           "service-worker.js",
-          "acct_bg.png",
+          "images/acct_bg.png",
           "images/bank2.ico",
           "images/bank2.png",
-          "images/blank.png"
+          "images/blank.png",
           // Add other files you want to cache
         ]);
       })

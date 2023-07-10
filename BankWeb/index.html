@@ -10,8 +10,9 @@
     <link rel="icon" href="images\bank2.ico" type="imasge/x-icon">
     <title>FTW Bank</title>
     <script src="service-worker.js"></script>
-    <script src="scriptindex.js"></script>
-          
+    <script src="script-index-mk3.js"></script>
+    <link rel="manifest" href="manifest.json">
+      
 </head>
 
 <body>
@@ -20,7 +21,7 @@
     <h1 class="bank-title">Welcome</h1>
     <p class="disclaimer">This is not a real bank. You will not be doing anything with real money.</p>
     <p id="message" class="error"></p>
-    <form action="">
+    <form action="" id="loginForm">
         <fieldset>
             <legend>Enter username/password for login:</legend>
             <p>
@@ -44,7 +45,19 @@
         </table>
     </form>
   </div>
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered');
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
 </body>
 
 <footer>

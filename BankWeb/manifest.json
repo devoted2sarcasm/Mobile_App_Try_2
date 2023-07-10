@@ -7,28 +7,18 @@
     "theme_color": "#3367d6",
     "icons": [
       {
+        "src": "images/bank2.ico",
+        "sizes": "32x30",
+        "type": "imasge/ico"
+      },
+      {
         "src": "images/bank2.png",
-        "sizes": "72x72",
+        "sizes": "296x276",
         "type": "image/png"
       },
       {
-        "src": "images/icon-96x96.png",
-        "sizes": "96x96",
-        "type": "image/png"
-      },
-      {
-        "src": "images/icon-144x144.png",
-        "sizes": "144x144",
-        "type": "image/png"
-      },
-      {
-        "src": "images/icon-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "images/icon-512x512.png",
-        "sizes": "512x512",
+        "src": "images/blank.png",
+        "sizes": "736x735",
         "type": "image/png"
       }
     ]

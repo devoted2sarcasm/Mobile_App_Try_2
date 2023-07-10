@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-const DATABASE_NAME = 'BankingAppDatabase.db';
+const DATABASE_NAME = 'FTWDatabase.db';
 const TABLE_NAME = 'FTWaccounts';
 const COLUMN_ACCOUNT_NUMBER = 'account_number';
 const COLUMN_FNAME = 'first_name';
@@ -22,11 +22,12 @@ const OPEN_OR_CREATE = `CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (
   ${COLUMN_PASS} TEXT NOT NULL
 )`;
 
+let db;
+
 // Check if IndexedDB is supported by the browser
 if ('indexedDB' in window) {
     // Open or create a database
-    const request = window.indexedDB.open(DATABASE_NAME, 2);
-    let db;
+    const request = window.indexedDB.open(DATABASE_NAME, 5);
   
     // Handle database upgrade, success, and error events
     request.onupgradeneeded = function(event) {
@@ -35,7 +36,7 @@ if ('indexedDB' in window) {
       // Create the object store if it doesn't exist
       if (!db.objectStoreNames.contains(TABLE_NAME)) {
         const objectStore = db.createObjectStore(TABLE_NAME, { keyPath: COLUMN_ACCOUNT_NUMBER, autoIncrement: true });
-        objectStore.createIndex(COLUMN_EMAIL, COLUMN_EMAIL, { unique: true });
+        objectStore.createIndex('emailIndex', COLUMN_EMAIL, { unique: true },);
       }
     };
   
@@ -46,9 +47,6 @@ if ('indexedDB' in window) {
       document.getElementById('create').onclick = function() {
         createAccount(db);
       };
-      document.getElementById('login').onclick = function() {
-        validateCredentials(db);
-      }    
     };
   
     request.onerror = function(event) {
@@ -62,6 +60,11 @@ const messageElement = document.getElementById('message');
 
 function createAccount(db) {
     const transaction = db.transaction([TABLE_NAME], 'readwrite');
+
+    if (!db.objectStoreNames.contains(TABLE_NAME)) {
+      const objectStore = db.createObjectStore(TABLE_NAME, { keyPath: COLUMN_ACCOUNT_NUMBER, autoIncrement: true });
+      objectStore.createIndex('emailIndex', COLUMN_EMAIL, { unique: true },);
+    }
     const objectStore = transaction.objectStore(TABLE_NAME);
   
     // Get form field values
@@ -70,9 +73,10 @@ function createAccount(db) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('password2').value;
+    const deposit = parseFloat(document.getElementById('deposit').value);
   
     // Validate form fields
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !email || !deposit || !password || !confirmPassword) {
       showMessage('Please complete all fields.');
       return;
     }
@@ -95,7 +99,7 @@ function createAccount(db) {
     request.onsuccess = function(event) {
       console.log('Account created successfully!');
       showMessage('Account created successfully!');
-      createUserTransactionsTable(db); 
+      createUserTransactionsTable(db, deposit, email); 
       window.location.href = 'index.html';
     };
   
@@ -118,45 +122,37 @@ function showMessage(message) {
 }
 
 // Function to create user transactions table
-function createUserTransactionsTable(db) {
-    const email = document.getElementById('email').value;
+function createUserTransactionsTable(db, deposit, email) {
+    const timestamp = new Date().getTime();
+    const transactionType = 'Deposit';
+    const transactionTable = TRANSACTION_TABLE_PREFIX + email;
+    console.log(transactionTable);
+
+    const transaction = db.transaction([transactionTable], 'readwrite');
+
+    if (!transaction.objectStoreNames.contains(transactionTable)) {
+      const objectStore = db.createObjectStore(transactionTable, { keyPath: COLUMN_TRANSACTION_ID, autoIncrement: true });
+      objectStore.createIndex('timestampIndex', COLUMN_TIMESTAMP, { unique: true },);
+  }
+    const objectStore = transaction.objectStore(transactionTable);
+
+    const transactionData = {
+      [COLUMN_TRANSACTION_TYPE]: transactionType,
+      [COLUMN_TRANSACTION_AMOUNT]: deposit,
+      [COLUMN_TIMESTAMP]: timestamp,
+      [COLUMN_BALANCE]: deposit
+    }
   
-    const createQuery = `CREATE TABLE IF NOT EXISTS ${TRANSACTION_TABLE_PREFIX}${email} (
-      ${COLUMN_TRANSACTION_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-      ${COLUMN_TRANSACTION_TYPE} TEXT NOT NULL,
-      ${COLUMN_BALANCE} REAL NOT NULL,
-      ${COLUMN_TIMESTAMP} TEXT NOT NULL,
-      ${COLUMN_TRANSACTION_AMOUNT} REAL NOT NULL
-    )`;
-  
-    const transaction = db.transaction([TABLE_NAME], 'readwrite');
-    transaction.oncomplete = function(event) {
-      console.log(`User transactions table created for ${email}`);
-    };
-  
-    transaction.onerror = function(event) {
-      console.error(`Failed to create user transactions table for ${email}`);
-    };
-  
-    const objectStore = transaction.objectStore(TABLE_NAME);
-    const request = objectStore.get(email);
+    const request = objectStore.add(transactionData);
   
     request.onsuccess = function(event) {
-      const user = event.target.result;
-      if (user) {
-        const transactionTableRequest = db.transaction([], 'readwrite').objectStore(`${TRANSACTION_TABLE_PREFIX}${email}`).createIndex(COLUMN_TRANSACTION_ID, COLUMN_TRANSACTION_ID, { unique: true });
-        transactionTableRequest.onsuccess = function() {
-          console.log(`User transactions table created for ${email}`);
-        };
-        transactionTableRequest.onerror = function() {
-          console.error(`Failed to create user transactions table for ${email}`);
-        };
-      } else {
-        console.error(`User not found for email ${email}`);
-      }
+      console.log(`User transactions table created for ${email}`);
+      const transactionRow = event.target.result;
+      console.log(`Transaction row: `, transactionRow);
     };
   
     request.onerror = function(event) {
       console.error(`Failed to retrieve user for email ${email}`);
     };
-  }
+}
+});
