@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D118B6A2A709AD6009C9E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D118B692A709AD6009C9E30 /* AppDelegate.swift */; };
+		8D118B6C2A709AD6009C9E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D118B6B2A709AD6009C9E30 /* SceneDelegate.swift */; };
+		8D118B6E2A709AD6009C9E30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D118B6D2A709AD6009C9E30 /* ViewController.swift */; };
+		8D118B712A709AD6009C9E30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B6F2A709AD6009C9E30 /* Main.storyboard */; };
+		8D118B732A709AD9009C9E30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B722A709AD9009C9E30 /* Assets.xcassets */; };
+		8D118B762A709AD9009C9E30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B742A709AD9009C9E30 /* LaunchScreen.storyboard */; };
+		8D118BA22A709BA3009C9E30 /* bank2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B972A709BA3009C9E30 /* bank2.png */; };
+		8D118BA32A709BA3009C9E30 /* bank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B982A709BA3009C9E30 /* bank.jpg */; };
+		8D118BA42A709BA3009C9E30 /* bank_launcher_round.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B992A709BA3009C9E30 /* bank_launcher_round.png */; };
+		8D118BA52A709BA3009C9E30 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B9A2A709BA3009C9E30 /* bank.png */; };
+		8D118BA62A709BA3009C9E30 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B9B2A709BA3009C9E30 /* blank.png */; };
+		8D118BA72A709BA3009C9E30 /* ic_launcher_background.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B9C2A709BA3009C9E30 /* ic_launcher_background.xml */; };
+		8D118BA82A709BA3009C9E30 /* acct_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B9D2A709BA3009C9E30 /* acct_bg.png */; };
+		8D118BA92A709BA3009C9E30 /* bank_launcher_foreground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B9E2A709BA3009C9E30 /* bank_launcher_foreground.png */; };
+		8D118BAA2A709BA3009C9E30 /* bank2.ico in Resources */ = {isa = PBXBuildFile; fileRef = 8D118B9F2A709BA3009C9E30 /* bank2.ico */; };
+		8D118BAB2A709BA3009C9E30 /* untitled.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D118BA02A709BA3009C9E30 /* untitled.png */; };
+		8D118BAC2A709BA3009C9E30 /* bank_launcher_background.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8D118BA12A709BA3009C9E30 /* bank_launcher_background.xml */; };
+		8D310B4E2A7587EC001A756F /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D310B4D2A7587EC001A756F /* TransactionTableViewCell.swift */; };
+		8D310B502A758A07001A756F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D310B4F2A758A07001A756F /* HistoryViewController.swift */; };
+		8D49BA6A2A70A83D0047DC5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49BA692A70A83D0047DC5C /* LoginViewController.swift */; };
+		8D49BA732A70AA850047DC5C /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49BA722A70AA850047DC5C /* CreateAccountViewController.swift */; };
+		8D49BA752A70AE1B0047DC5C /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49BA742A70AE1B0047DC5C /* AccountViewController.swift */; };
+		8DDB15982A70B0A3004DE22B /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D118B8A2A709B5B009C9E30 /* SQLite.framework */; };
+		8DDB15992A70B0A3004DE22B /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D118B8A2A709B5B009C9E30 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DDB159C2A70B114004DE22B /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDB159B2A70B114004DE22B /* SQLite */; };
+		8DE978402A70A6FE00A0D441 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE978382A70A6FE00A0D441 /* DatabaseManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8D118B892A709B5B009C9E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247AD31C3F04ED00AE3E12;
+			remoteInfo = "SQLite iOS";
+		};
+		8D118B8B2A709B5B009C9E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247ADD1C3F04ED00AE3E12;
+			remoteInfo = "SQLiteTests iOS";
+		};
+		8D118B8D2A709B5B009C9E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B3C1C3F3ED000AE3E12;
+			remoteInfo = "SQLite Mac";
+		};
+		8D118B8F2A709B5B009C9E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B451C3F3ED000AE3E12;
+			remoteInfo = "SQLiteTests Mac";
+		};
+		8D118B912A709B5B009C9E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E5A1C6BB0F50062603F;
+			remoteInfo = "SQLite tvOS";
+		};
+		8D118B932A709B5B009C9E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E631C6BB0F60062603F;
+			remoteInfo = "SQLiteTests tvOS";
+		};
+		8D118B952A709B5B009C9E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A121AC451CA35C79005A31D1;
+			remoteInfo = "SQLite watchOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DDB159A2A70B0A3004DE22B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8DDB15992A70B0A3004DE22B /* SQLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8D118B662A709AD6009C9E30 /* Banking_FTW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banking_FTW.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D118B692A709AD6009C9E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8D118B6B2A709AD6009C9E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8D118B6D2A709AD6009C9E30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8D118B702A709AD6009C9E30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8D118B722A709AD9009C9E30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D118B752A709AD9009C9E30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8D118B772A709AD9009C9E30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D118B7E2A709AF2009C9E30 /* SQLite.swift-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "SQLite.swift-master"; path = "../../Downloads/SQLite.swift-master"; sourceTree = "<group>"; };
+		8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../../Downloads/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		8D118B972A709BA3009C9E30 /* bank2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bank2.png; path = "../../../Downloads/drive-download-20230714T004106Z-001/bank2.png"; sourceTree = "<group>"; };
+		8D118B982A709BA3009C9E30 /* bank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bank.jpg; path = "../../../Downloads/drive-download-20230714T004106Z-001/bank.jpg"; sourceTree = "<group>"; };
+		8D118B992A709BA3009C9E30 /* bank_launcher_round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bank_launcher_round.png; path = "../../../Downloads/drive-download-20230714T004106Z-001/bank_launcher_round.png"; sourceTree = "<group>"; };
+		8D118B9A2A709BA3009C9E30 /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bank.png; path = "../../../Downloads/drive-download-20230714T004106Z-001/bank.png"; sourceTree = "<group>"; };
+		8D118B9B2A709BA3009C9E30 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = "../../../Downloads/drive-download-20230714T004106Z-001/blank.png"; sourceTree = "<group>"; };
+		8D118B9C2A709BA3009C9E30 /* ic_launcher_background.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ic_launcher_background.xml; path = "../../../Downloads/drive-download-20230714T004106Z-001/ic_launcher_background.xml"; sourceTree = "<group>"; };
+		8D118B9D2A709BA3009C9E30 /* acct_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = acct_bg.png; path = "../../../Downloads/drive-download-20230714T004106Z-001/acct_bg.png"; sourceTree = "<group>"; };
+		8D118B9E2A709BA3009C9E30 /* bank_launcher_foreground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bank_launcher_foreground.png; path = "../../../Downloads/drive-download-20230714T004106Z-001/bank_launcher_foreground.png"; sourceTree = "<group>"; };
+		8D118B9F2A709BA3009C9E30 /* bank2.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; name = bank2.ico; path = "../../../Downloads/drive-download-20230714T004106Z-001/bank2.ico"; sourceTree = "<group>"; };
+		8D118BA02A709BA3009C9E30 /* untitled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = untitled.png; path = "../../../Downloads/drive-download-20230714T004106Z-001/untitled.png"; sourceTree = "<group>"; };
+		8D118BA12A709BA3009C9E30 /* bank_launcher_background.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = bank_launcher_background.xml; path = "../../../Downloads/drive-download-20230714T004106Z-001/bank_launcher_background.xml"; sourceTree = "<group>"; };
+		8D310B4D2A7587EC001A756F /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		8D310B4F2A758A07001A756F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		8D49BA692A70A83D0047DC5C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8D49BA722A70AA850047DC5C /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		8D49BA742A70AE1B0047DC5C /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		8DE978382A70A6FE00A0D441 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D118B632A709AD6009C9E30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DDB159C2A70B114004DE22B /* SQLite in Frameworks */,
+				8DDB15982A70B0A3004DE22B /* SQLite.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8D118B5D2A709AD6009C9E30 = {
+			isa = PBXGroup;
+			children = (
+				8D118B7D2A709AF2009C9E30 /* Packages */,
+				8D118B682A709AD6009C9E30 /* Banking_FTW */,
+				8D118B672A709AD6009C9E30 /* Products */,
+				8DDB15972A70B0A3004DE22B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8D118B672A709AD6009C9E30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D118B662A709AD6009C9E30 /* Banking_FTW.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8D118B682A709AD6009C9E30 /* Banking_FTW */ = {
+			isa = PBXGroup;
+			children = (
+				8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */,
+				8D118B692A709AD6009C9E30 /* AppDelegate.swift */,
+				8D118B6B2A709AD6009C9E30 /* SceneDelegate.swift */,
+				8D118B6D2A709AD6009C9E30 /* ViewController.swift */,
+				8D49BA692A70A83D0047DC5C /* LoginViewController.swift */,
+				8D49BA722A70AA850047DC5C /* CreateAccountViewController.swift */,
+				8D49BA742A70AE1B0047DC5C /* AccountViewController.swift */,
+				8DE978382A70A6FE00A0D441 /* DatabaseManager.swift */,
+				8D118B6F2A709AD6009C9E30 /* Main.storyboard */,
+				8D310B4F2A758A07001A756F /* HistoryViewController.swift */,
+				8D310B4D2A7587EC001A756F /* TransactionTableViewCell.swift */,
+				8D118B722A709AD9009C9E30 /* Assets.xcassets */,
+				8D118B742A709AD9009C9E30 /* LaunchScreen.storyboard */,
+				8D118B772A709AD9009C9E30 /* Info.plist */,
+				8D118B9D2A709BA3009C9E30 /* acct_bg.png */,
+				8D118BA12A709BA3009C9E30 /* bank_launcher_background.xml */,
+				8D118B9E2A709BA3009C9E30 /* bank_launcher_foreground.png */,
+				8D118B992A709BA3009C9E30 /* bank_launcher_round.png */,
+				8D118B982A709BA3009C9E30 /* bank.jpg */,
+				8D118B9A2A709BA3009C9E30 /* bank.png */,
+				8D118B9F2A709BA3009C9E30 /* bank2.ico */,
+				8D118B972A709BA3009C9E30 /* bank2.png */,
+				8D118B9B2A709BA3009C9E30 /* blank.png */,
+				8D118B9C2A709BA3009C9E30 /* ic_launcher_background.xml */,
+				8D118BA02A709BA3009C9E30 /* untitled.png */,
+			);
+			path = Banking_FTW;
+			sourceTree = "<group>";
+		};
+		8D118B7D2A709AF2009C9E30 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				8D118B7E2A709AF2009C9E30 /* SQLite.swift-master */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		8D118B802A709B5B009C9E30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D118B8A2A709B5B009C9E30 /* SQLite.framework */,
+				8D118B8C2A709B5B009C9E30 /* SQLiteTests iOS.xctest */,
+				8D118B8E2A709B5B009C9E30 /* SQLite.framework */,
+				8D118B902A709B5B009C9E30 /* SQLiteTests Mac.xctest */,
+				8D118B922A709B5B009C9E30 /* SQLite.framework */,
+				8D118B942A709B5B009C9E30 /* SQLiteTests tvOS.xctest */,
+				8D118B962A709B5B009C9E30 /* SQLite.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8DDB15972A70B0A3004DE22B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D118B652A709AD6009C9E30 /* Banking_FTW */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D118B7A2A709AD9009C9E30 /* Build configuration list for PBXNativeTarget "Banking_FTW" */;
+			buildPhases = (
+				8D118B622A709AD6009C9E30 /* Sources */,
+				8D118B632A709AD6009C9E30 /* Frameworks */,
+				8D118B642A709AD6009C9E30 /* Resources */,
+				8DDB159A2A70B0A3004DE22B /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Banking_FTW;
+			packageProductDependencies = (
+				8DDB159B2A70B114004DE22B /* SQLite */,
+			);
+			productName = Banking_FTW;
+			productReference = 8D118B662A709AD6009C9E30 /* Banking_FTW.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8D118B5E2A709AD6009C9E30 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					8D118B652A709AD6009C9E30 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 8D118B612A709AD6009C9E30 /* Build configuration list for PBXProject "Banking_FTW" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8D118B5D2A709AD6009C9E30;
+			productRefGroup = 8D118B672A709AD6009C9E30 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8D118B802A709B5B009C9E30 /* Products */;
+					ProjectRef = 8D118B7F2A709B5B009C9E30 /* SQLite.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D118B652A709AD6009C9E30 /* Banking_FTW */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8D118B8A2A709B5B009C9E30 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 8D118B892A709B5B009C9E30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D118B8C2A709B5B009C9E30 /* SQLiteTests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests iOS.xctest";
+			remoteRef = 8D118B8B2A709B5B009C9E30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D118B8E2A709B5B009C9E30 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 8D118B8D2A709B5B009C9E30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D118B902A709B5B009C9E30 /* SQLiteTests Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests Mac.xctest";
+			remoteRef = 8D118B8F2A709B5B009C9E30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D118B922A709B5B009C9E30 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 8D118B912A709B5B009C9E30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D118B942A709B5B009C9E30 /* SQLiteTests tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests tvOS.xctest";
+			remoteRef = 8D118B932A709B5B009C9E30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D118B962A709B5B009C9E30 /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 8D118B952A709B5B009C9E30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D118B642A709AD6009C9E30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D118BAA2A709BA3009C9E30 /* bank2.ico in Resources */,
+				8D118BA52A709BA3009C9E30 /* bank.png in Resources */,
+				8D118BAB2A709BA3009C9E30 /* untitled.png in Resources */,
+				8D118BA82A709BA3009C9E30 /* acct_bg.png in Resources */,
+				8D118B762A709AD9009C9E30 /* LaunchScreen.storyboard in Resources */,
+				8D118BA32A709BA3009C9E30 /* bank.jpg in Resources */,
+				8D118B732A709AD9009C9E30 /* Assets.xcassets in Resources */,
+				8D118BA72A709BA3009C9E30 /* ic_launcher_background.xml in Resources */,
+				8D118BA62A709BA3009C9E30 /* blank.png in Resources */,
+				8D118BA22A709BA3009C9E30 /* bank2.png in Resources */,
+				8D118BA92A709BA3009C9E30 /* bank_launcher_foreground.png in Resources */,
+				8D118BAC2A709BA3009C9E30 /* bank_launcher_background.xml in Resources */,
+				8D118BA42A709BA3009C9E30 /* bank_launcher_round.png in Resources */,
+				8D118B712A709AD6009C9E30 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D118B622A709AD6009C9E30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D49BA732A70AA850047DC5C /* CreateAccountViewController.swift in Sources */,
+				8DE978402A70A6FE00A0D441 /* DatabaseManager.swift in Sources */,
+				8D310B4E2A7587EC001A756F /* TransactionTableViewCell.swift in Sources */,
+				8D118B6E2A709AD6009C9E30 /* ViewController.swift in Sources */,
+				8D49BA752A70AE1B0047DC5C /* AccountViewController.swift in Sources */,
+				8D118B6A2A709AD6009C9E30 /* AppDelegate.swift in Sources */,
+				8D310B502A758A07001A756F /* HistoryViewController.swift in Sources */,
+				8D49BA6A2A70A83D0047DC5C /* LoginViewController.swift in Sources */,
+				8D118B6C2A709AD6009C9E30 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8D118B6F2A709AD6009C9E30 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D118B702A709AD6009C9E30 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8D118B742A709AD9009C9E30 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D118B752A709AD9009C9E30 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8D118B782A709AD9009C9E30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8D118B792A709AD9009C9E30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8D118B7B2A709AD9009C9E30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2JY267455J;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Banking_FTW/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "CIS230.Banking-FTW";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8D118B7C2A709AD9009C9E30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2JY267455J;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Banking_FTW/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "CIS230.Banking-FTW";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8D118B612A709AD6009C9E30 /* Build configuration list for PBXProject "Banking_FTW" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D118B782A709AD9009C9E30 /* Debug */,
+				8D118B792A709AD9009C9E30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D118B7A2A709AD9009C9E30 /* Build configuration list for PBXNativeTarget "Banking_FTW" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D118B7B2A709AD9009C9E30 /* Debug */,
+				8D118B7C2A709AD9009C9E30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8DDB159B2A70B114004DE22B /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8D118B5E2A709AD6009C9E30 /* Project object */;
+}

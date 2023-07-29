@@ -1,0 +1,83 @@
+import UIKit
+
+class LoginViewController: UIViewController {
+
+    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var createAccountButton: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+    private func setupUI() {
+        // Set up logo image
+        logoImageView.image = UIImage(named: "placeholder_logo")
+        
+        // Customize UI elements if needed
+    }
+
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+        // Handle login button tap
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        
+        // Validate email and password
+        if isValidEmail(email) && isValidPassword(password) {
+            // Perform login processing
+            login(email: email, password: password)
+        } else {
+            showToast(message: "Invalid email or password")
+        }
+    }
+
+    @IBAction func createAccountButtonTapped(_ sender: UIButton) {
+        // Handle create account button tap
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let createAccountViewController = storyboard.instantiateViewController(withIdentifier: "CreateAccountViewController") as? CreateAccountViewController else {
+            return
+        }
+        navigationController?.pushViewController(createAccountViewController, animated: true)
+    }
+
+    private func login(email: String, password: String) {
+        // Perform login processing
+        // You can implement your own logic for validating the credentials and handling the login process
+        // For demonstration purposes, we will simply show a success message and navigate to the account view controller
+        
+        showToast(message: "Login Successful")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let accountViewController = storyboard.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController else {
+            return
+        }
+        accountViewController.email = email
+        navigationController?.pushViewController(accountViewController, animated: true)
+    }
+
+    private func showToast(message: String) {
+        let toast = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        present(toast, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                toast.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+
+    private func isValidEmail(_ email: String) -> Bool {
+        // Implement email validation logic
+        // You can use regular expressions or other validation techniques to validate the email format
+        // For demonstration purposes, we will simply check if the email is not empty
+        return !email.isEmpty
+    }
+
+    private func isValidPassword(_ password: String) -> Bool {
+        // Implement password validation logic
+        // You can define your own rules for password validation (e.g., minimum length, required characters, etc.)
+        // For demonstration purposes, we will simply check if the password is not empty
+        return !password.isEmpty
+    }
+}
